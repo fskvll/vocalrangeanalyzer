@@ -286,7 +286,6 @@ function showResults() {
   document.getElementById('result-low').textContent = midiToName(lowestMidi);
   document.getElementById('result-high').textContent = midiToName(highestMidi);
   document.getElementById('voice-name').textContent = vt ? vt.name : 'Unknown';
-  document.getElementById('voice-desc').textContent = vt ? vt.desc : '';
 
   showPhase('results');
   requestAnimationFrame(() => drawRangeDiagram(lowestMidi, highestMidi, vt));
