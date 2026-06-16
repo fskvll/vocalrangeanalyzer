@@ -12,15 +12,21 @@ Sing into your microphone and find out your vocal range and voice type — sopra
 
 Pitch detection runs entirely in the browser using the Web Audio API. No data is sent anywhere.
 
-## Run it locally
+## Run it
 
-You need a local server because browsers block microphone access on `file://` URLs.
+**Option 1 — Local server**
+
+Browsers block microphone access on `file://` URLs, so you need a local server:
 
 ```sh
 python3 -m http.server 5500
 ```
 
 Then open `http://localhost:5500` in Chrome or Firefox.
+
+**Option 2 — GitHub Pages**
+
+Fork the repo and enable GitHub Pages under Settings → Pages → Deploy from branch (main). Your site will be live at `https://yourusername.github.io/vocalrangeanalyzer` with microphone access working out of the box.
 
 ## Built with
 
