@@ -403,6 +403,42 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
+function drawBgWave() {
+  const canvas = document.getElementById('bg-wave');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width = canvas.offsetWidth;
+  const H = canvas.height = canvas.offsetHeight;
+  let t = 0;
+
+  function frame() {
+    if (currentPhase !== 'idle') return;
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 1.5;
+
+    for (let line = 0; line < 3; line++) {
+      const amp = 18 - line * 5;
+      const freq = 0.012 + line * 0.004;
+      const speed = 0.012 - line * 0.003;
+      const yBase = H * (0.35 + line * 0.15);
+
+      ctx.beginPath();
+      for (let x = 0; x <= W; x++) {
+        const y = yBase + Math.sin(x * freq + t * speed * 60) * amp;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    t++;
+    requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+drawBgWave();
+
 document.getElementById('start-btn').addEventListener('click', async () => {
   try {
     await startMic();
