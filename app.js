@@ -403,6 +403,44 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
+function drawStars() {
+  const canvas = document.getElementById('stars-bg');
+  const ctx = canvas.getContext('2d');
+
+  let W, H, stars;
+
+  function init() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    stars = Array.from({ length: 90 }, () => ({
+      x:       Math.random() * W,
+      y:       Math.random() * H,
+      r:       Math.random() * 1.2 + 0.3,
+      opacity: Math.random() * 0.5 + 0.1,
+      speed:   Math.random() * 0.004 + 0.002,
+      phase:   Math.random() * Math.PI * 2,
+    }));
+  }
+
+  function frame(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (const s of stars) {
+      const alpha = s.opacity + Math.sin(t * s.speed + s.phase) * 0.15;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(2)})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  init();
+  window.addEventListener('resize', init);
+  requestAnimationFrame(frame);
+}
+
+drawStars();
+
 function drawBgWave() {
   const canvas = document.getElementById('bg-wave');
   if (!canvas) return;
