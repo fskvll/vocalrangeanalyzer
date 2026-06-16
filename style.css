@@ -1,0 +1,208 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #000;
+  --surface: #0f0f0f;
+  --border:  #2a2a2a;
+  --text:    #fff;
+  --muted:   #666;
+  --radius:  10px;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.container { width: 100%; max-width: 660px; }
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.3rem; }
+.copyright { font-size: 0.7rem; color: #333; margin-top: 0.4rem; }
+
+.phase { display: none; }
+.phase.active { display: block; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+}
+
+/* Start screen */
+.start-screen { text-align: center; }
+
+.mic-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.start-screen h2 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.65rem; }
+.start-screen p {
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 360px;
+  margin: 0 auto 2rem;
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0.8rem 2.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-primary:hover  { opacity: 0.85; }
+.btn-primary:active { opacity: 0.7; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.7rem 2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  display: block;
+  margin: 0 auto;
+}
+.btn-secondary:hover { border-color: #666; }
+
+/* Recording screen */
+.recording-screen { text-align: center; }
+
+.instruction {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted);
+  min-height: 1.6em;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+}
+
+.note-display { margin-bottom: 1.5rem; }
+
+.current-note {
+  font-size: 5rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: #333;
+  line-height: 1;
+  transition: color 0.1s, transform 0.1s;
+}
+.current-note.lit {
+  color: #fff;
+  transform: scale(1.04);
+}
+.current-freq {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: monospace;
+  margin-top: 0.3rem;
+}
+
+.visualizer {
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+#waveform { width: 100%; display: block; }
+
+.progress-bar-wrap {
+  background: #1a1a1a;
+  border-radius: 2px;
+  height: 3px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  transform-origin: left;
+  transition: transform linear;
+}
+
+.detected-note {
+  font-size: 0.875rem;
+  color: #fff;
+  min-height: 1.4em;
+  font-weight: 500;
+}
+
+/* Results screen */
+.results-screen { text-align: center; }
+
+.voice-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.voice-name {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+.range-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.range-note {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+.range-sep { color: var(--muted); font-size: 0.85rem; }
+
+.voice-desc {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0 auto 2rem;
+}
+
+.diagram-wrap {
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+#range-diagram { width: 100%; display: block; }
